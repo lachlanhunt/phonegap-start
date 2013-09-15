@@ -21,10 +21,7 @@ var app = {
     initialize: function() {
         this.bindEvents();
     },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
+
     handlers: [
         "deviceready",
         "pause",
@@ -43,15 +40,25 @@ var app = {
         "volumeupbutton"
     ],
 
+
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        for (var id in this.handlers) {
-            document.addEventListener(id, app.createEventHandler(id), false);
-        }
+        document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+        for (var id in this.handlers) {
+            document.addEventListener(id, app.createEventHandler(id), false);
+        }
+    },
+
     createEventHandler: function(id) {
         return function() {
             app.receivedEvent(id);
