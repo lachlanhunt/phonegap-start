@@ -58,12 +58,12 @@ var app = {
             document.addEventListener(id, app.createEventHandler(id), false);
         }
 
-        app.remote = window.open({"file":"remote.html"},  '_blank', 'location=no');
+        app.remote = window.open({"remote.html",  '_blank', 'location=yes');
         app.remote.addEventListener("loadstart", function() {
             alert("Load started");
             document.querySelector("#loadstart").textContent("Load started");
 
-            app.remote.executeScript("js/messages.js", function(port) {
+            app.remote.executeScript({file:"js/messages.js"}, function(port) {
                 port.postMessage("Hello World!")
                 alert("Posting message to " + port);
             });
