@@ -25,8 +25,58 @@ var app = {
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
+    handlers: {
+        deviceready: function() {
+            alert("deviceready")
+        },
+        pause: function() {
+            alert("pause")
+        },
+        resume: function() {
+            alert("resume")
+        },
+        online: function() {
+            alert("online")
+        },
+        offline: function() {
+            alert("offline")
+        },
+        backbutton: function() {
+            alert("backbutton")
+        },
+        batterycritical: function() {
+            alert("batterycritical")
+        },
+        batterylow: function() {
+            alert("batterylow")
+        },
+        batterystatus: function() {
+            alert("batterystatus")
+        },
+        menubutton: function() {
+            alert("menubutton")
+        },
+        searchbutton: function() {
+            alert("searchbutton")
+        },
+        startcallbutton: function() {
+            alert("startcallbutton")
+        },
+        endcallbutton: function() {
+            alert("endcallbutton")
+        },
+        volumedownbutton: function() {
+            alert("volumedownbutton")
+        },
+        volumeupbutton: function() {
+            alert("volumeupbutton")
+        },
+    }
+
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        for (var evt in this.handlers) {
+            document.addEventListener(evt, this.handlers[evt], false);
+        }
     },
     // deviceready Event Handler
     //
