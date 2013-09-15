@@ -62,7 +62,7 @@ var app = {
         app.remote.addEventListener("loadstop", function() {
             console.log("Injecting script on load stop");
             app.remote.executeScript({"file":"js/messages.js"}, function(response) {
-                alert(response);
+                alert("Received response: " + response);
                 document.getElementById("loadstop").innerHTML = response;
                 //port.postMessage("Hello World!")
             });
