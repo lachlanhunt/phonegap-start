@@ -61,9 +61,9 @@ var app = {
         app.remote = window.open("remote.html",  '_blank', 'location=yes');
         app.remote.addEventListener("loadstop", function() {
             console.log("Injecting script on load stop");
-            app.remote.executeScript({"file":"js/messages.js"}, function(port) {
-                console.log("Script executed, posting message to " + port);
-                port.postMessage("Hello World!")
+            app.remote.executeScript({"file":"js/messages.js"}, function(response) {
+                console.log(response);
+                //port.postMessage("Hello World!")
             });
         });
     },
