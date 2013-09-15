@@ -25,75 +25,41 @@ var app = {
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    handlers: {
-        deviceready: function() {
-            alert("deviceready")
-        },
-        pause: function() {
-            alert("pause")
-        },
-        resume: function() {
-            alert("resume")
-        },
-        online: function() {
-            alert("online")
-        },
-        offline: function() {
-            alert("offline")
-        },
-        backbutton: function() {
-            alert("backbutton")
-        },
-        batterycritical: function() {
-            alert("batterycritical")
-        },
-        batterylow: function() {
-            alert("batterylow")
-        },
-        batterystatus: function() {
-            alert("batterystatus")
-        },
-        menubutton: function() {
-            alert("menubutton")
-        },
-        searchbutton: function() {
-            alert("searchbutton")
-        },
-        startcallbutton: function() {
-            alert("startcallbutton")
-        },
-        endcallbutton: function() {
-            alert("endcallbutton")
-        },
-        volumedownbutton: function() {
-            alert("volumedownbutton")
-        },
-        volumeupbutton: function() {
-            alert("volumeupbutton")
-        },
-    }
+    handlers: [
+        "deviceready",
+        "pause",
+        "resume",
+        "online",
+        "offline",
+        "backbutton",
+        "batterycritical",
+        "batterylow",
+        "batterystatus",
+        "menubutton",
+        "searchbutton",
+        "startcallbutton",
+        "endcallbutton",
+        "volumedownbutton",
+        "volumeupbutton",
+    ],
 
     bindEvents: function() {
-        for (var evt in this.handlers) {
-            document.addEventListener(evt, this.handlers[evt], false);
+        for (var id in this.handlers) {
+            document.addEventListener(evt, app.createEventHandler(id), false);
         }
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+    createEventHandler: function(id) {
+        return function() {
+            app.receivedEvent(id);
+        }
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
+        document.getElementById(id).setAttribute('style', 'color:green;');
         console.log('Received Event: ' + id);
     }
 };
