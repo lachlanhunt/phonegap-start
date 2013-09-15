@@ -54,12 +54,18 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        for (var id in this.handlers) {
+        for (var i = 0; i < app.handlers.length; i++) {
+            var id = app.handlers[i];
             document.addEventListener(id, app.createEventHandler(id), false);
         }
     },
 
     createEventHandler: function(id) {
+        console.log("Creating event listener: " + id);
+        var p = document.createElement("p")
+        p.id = id;
+        p.textContent = id;
+        document.querySelector(".app").appendChild(p);
         return function() {
             app.receivedEvent(id);
         }
