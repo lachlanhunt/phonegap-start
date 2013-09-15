@@ -35,7 +35,9 @@ var app = {
         "menubutton",
         "searchbutton",
         "startcallbutton",
-        "endcallbutton"
+        "endcallbutton",
+        "volumedownbutton",
+        "volumeupbutton"
     ],
 
 
@@ -44,6 +46,14 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
         for (var i = 0; i < app.handlers.length; i++) {
             var id = app.handlers[i];
             document.addEventListener(id, app.createEventHandler(id), false);
