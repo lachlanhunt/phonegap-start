@@ -61,6 +61,7 @@ var app = {
         app.remote = window.open("remote.html",  '_blank', 'location=yes');
         app.remote.addEventListener("loadstart", function() {
             app.remote.port = app.remote.executeScript("js/messages.js");
+            port.postMessage("Hello World!")
             console.log(app.remote.port);
         });
     },
