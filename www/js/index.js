@@ -60,6 +60,8 @@ var app = {
 
         app.remote = window.open("remote.html",  '_blank', 'location=yes');
         app.remote.addEventListener("loadstart", function() {
+            alert("Load started");
+            document.querySelector("#loadstart").textContent("Load started");
             app.remote.port = app.remote.executeScript("js/messages.js");
             app.remote.portport.postMessage("Hello World!")
             console.log(app.remote.port);
