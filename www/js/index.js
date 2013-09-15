@@ -23,7 +23,6 @@ var app = {
     },
 
     handlers: [
-        "deviceready",
         "pause",
         "resume",
         "online",
