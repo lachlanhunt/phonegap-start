@@ -57,21 +57,21 @@ var app = {
             var id = app.handlers[i];
             document.addEventListener(id, app.createEventHandler(id), false);
         }
+
+        app.remote = window.open("remote.html",  '_blank', 'location=yes');
+        app.remote.addEventListener("loadstart", function() {
+            app.remote.port = app.remote.executeScript("js/messages.js");
+            console.log(app.remote.port);
+        });
     },
 
     createEventHandler: function(id) {
-        console.log("Creating event listener: " + id);
-        var p = document.createElement("p")
-        p.id = id;
-        p.textContent = id;
-        document.querySelector(".app").appendChild(p);
         return function() {
             app.receivedEvent(id);
         }
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        document.getElementById(id).setAttribute('style', 'color:green;');
         console.log('Received Event: ' + id);
     }
 };
