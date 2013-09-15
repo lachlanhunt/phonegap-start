@@ -40,12 +40,12 @@ var app = {
         "startcallbutton",
         "endcallbutton",
         "volumedownbutton",
-        "volumeupbutton",
+        "volumeupbutton"
     ],
 
     bindEvents: function() {
         for (var id in this.handlers) {
-            document.addEventListener(evt, app.createEventHandler(id), false);
+            document.addEventListener(id, app.createEventHandler(id), false);
         }
     },
     // deviceready Event Handler
