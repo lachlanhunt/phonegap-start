@@ -61,11 +61,14 @@ var app = {
         app.remote = window.open("remote.html",  '_blank', 'location=yes');
         app.remote.addEventListener("loadstop", function() {
             console.log("Injecting script on load stop");
-            app.remote.executeScript({"file":"js/messages.js"}, function(response) {
-                alert("Received response: " + response);
-                document.getElementById("loadstop").innerHTML = response;
+            app.remote.executeScript({
+                    "code":"document.body.innerHTML='Executing injected script';return 'response message';"
+                }, function(response) {
+                    alert("Received response: " + response);
+                    document.getElementById("loadstop").innerHTML = response;
                 //port.postMessage("Hello World!")
-            });
+                }
+            );
         });
     },
 
